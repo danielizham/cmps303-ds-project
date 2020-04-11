@@ -3,7 +3,6 @@ package datastructure;
 import model.Student;
 
 import java.util.Scanner;
-import java.util.stream.IntStream;
 
 public class TreeTable {
 
@@ -16,7 +15,7 @@ public class TreeTable {
 	}
 
 	public void insert(Student student) {
-		hashArray[h(student.getId())].insert(student.getId(),student);
+		hashArray[h(student.getId())].insert(student.getId(), student);
 	}
 
 	public Student search(int id) {
@@ -41,8 +40,8 @@ public class TreeTable {
 			System.out.println("Enter new GPA:");
 			double gpa = scanner.nextDouble();
 
-			hashArray[h(id)].find(id).dData = new Student(id,name,address,gpa);
-
+			hashArray[h(id)].find(id).dData = new Student(id, name, address, gpa);
+			scanner.close();
 		} else {
 			System.out.println("Student with such id does not exist!");
 		}
@@ -57,28 +56,27 @@ public class TreeTable {
 	}
 
 	public void printTree(int year) {
-		hashArray[year%20].printData();
+		hashArray[year % 20].printData();
 	}
 
 	public void printAll() {
-		for (Tree tree: hashArray )
+		for (Tree tree : hashArray)
 			tree.printData();
 	}
 
 	public void showTree(int year) {
-		hashArray[year%20].displayTree();
+		hashArray[year % 20].displayTree();
 	}
 
 	public void studentGPA(double gpa) {
-		for (Tree tree: hashArray )
+		for (Tree tree : hashArray)
 			tree.printByGpa(gpa);
 	}
 
 	public int h(int id) {
 		String number = String.valueOf(id);
-		int year = Integer.parseInt(number.substring(0,4));
+		int year = Integer.parseInt(number.substring(0, 4));
 		return year % 20;
 	}
-
 
 }
