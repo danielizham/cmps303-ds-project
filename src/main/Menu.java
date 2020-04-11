@@ -93,6 +93,7 @@ public class Menu {
     private static int choice() {
 
         Scanner input = new Scanner(System.in);
+         // Cant Be Closed Since its in a loop, Creats an error once re intering the loop
         int choice = input.nextInt();
         input.nextLine();
         while (choice <= 0 && choice > 13) {
