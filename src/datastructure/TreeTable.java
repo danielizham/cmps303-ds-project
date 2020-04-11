@@ -3,7 +3,6 @@ package datastructure;
 import model.Student;
 
 import java.util.Scanner;
-import java.util.stream.IntStream;
 
 public class TreeTable {
 
@@ -42,7 +41,7 @@ public class TreeTable {
 			double gpa = scanner.nextDouble();
 
 			hashArray[h(id)].find(id).dData = new Student(id, name, address, gpa);
-
+			scanner.close();
 		} else {
 			System.out.println("Student with such id does not exist!");
 		}
