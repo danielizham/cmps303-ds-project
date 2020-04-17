@@ -10,10 +10,6 @@ public class Node {
 
 	public void displayNode() // display ourself
 	{
-		System.out.print('{');
-		System.out.print(iData);
-		System.out.print(", ");
-		System.out.print(dData);
-		System.out.print("} ");
+		System.out.println("{ " + iData + ", " + dData + " }");
 	}
 } // end class Node

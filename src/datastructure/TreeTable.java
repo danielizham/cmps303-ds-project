@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 public class TreeTable {
 
+	Scanner scanner = new Scanner(System.in);
+
 	private Tree[] hashArray;
 
 	public TreeTable() {
@@ -32,16 +34,15 @@ public class TreeTable {
 			System.out.println("Current Student Information");
 			System.out.println(student);
 
-			Scanner scanner = new Scanner(System.in);
 			System.out.println("Enter new Name:");
 			String name = scanner.nextLine();
 			System.out.println("Enter new Address:");
 			String address = scanner.nextLine();
 			System.out.println("Enter new GPA:");
 			double gpa = scanner.nextDouble();
-
+			// Puts a New Student, Doesnt Update
 			hashArray[h(id)].find(id).dData = new Student(id, name, address, gpa);
-			scanner.close();
+			System.out.println("Student Updated Succefully !");
 		} else {
 			System.out.println("Student with such id does not exist!");
 		}

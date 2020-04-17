@@ -1,8 +1,16 @@
 package main;
 
 import java.util.Scanner;
+import datastructure.TreeTable;
+import model.Student;
 
 public class Menu {
+    static TreeTable treeTable = new TreeTable();
+    // Let This Be Here For Now Since We Should Move All Of the Data into The Data Manager.
+    // Also It Made It easier to access the table in the functions for now.
+    // Wil Be Changed soon
+    static Scanner cin = new Scanner(System.in); // Generally Scoped Scanner To Avoid Repetetion
+
     public static void showMenu() {
 
         int choice;
@@ -22,66 +30,47 @@ public class Menu {
             System.out.println("12. Exit");
             System.out.println("\nPlease Enter your Choice: ");
 
-            choice = choice();
+            choice = choiceInput();
 
             switch (choice) {
-
                 case 1:
-                    // addStudent();
-                    System.out.println("Not implemented Yet!");
+                    addStudent();
                     break;
                 case 2:
-                    // searchStudent(id);
-                    System.out.println("Not implemented Yet!");
+                    Search();
                     break;
                 case 3:
-                    // updateStudent(id);
-                    System.out.println("Not implemented Yet!");
-
+                    Update(); // Creates a New Student Using the Updated info
                     break;
                 case 4:
                     // deleteStudent(id);
                     System.out.println("Not implemented Yet!");
-
                     break;
                 case 5:
-                    // diplayStudent(id);
-                    System.out.println("Not implemented Yet!");
-
+                    Display();
                     break;
                 case 6:
-                    // displayStudents(year);
-                    System.out.println("Not implemented Yet!");
-
+                    DisplayStudents(2);
                     break;
                 case 7:
-                    // displayStudents();
-                    System.out.println("Not implemented Yet!");
-
+                    DisplayStudents(1);
                     break;
                 case 8:
-                    // showTree(year);
-                    System.out.println("Not implemented Yet!");
-
+                    showTreeByYear();
                     break;
                 case 9:
-                    // studentsUnderGPA(gpa);
-                    System.out.println("Not implemented Yet!");
-
+                    studentsUnderGPA();
                     break;
                 case 10:
                     // saveFile();
                     System.out.println("Not implemented Yet!");
-
                     break;
                 case 11:
                     // readFile();
                     System.out.println("Not implemented Yet!");
-
                     break;
                 case 12:
                     System.out.println("\nThank you for using this application.");
-
                     break;
                 default:
                     System.out.println("Invalid Input");
@@ -90,17 +79,101 @@ public class Menu {
         } while (choice != 12);
     }
 
-    private static int choice() {
-
-        Scanner input = new Scanner(System.in);
-        // Cant Be Closed Since its in a loop, Creats an error once re intering the loop
-        int choice = input.nextInt();
-        input.nextLine();
-        while (choice <= 0 && choice > 13) {
-            System.out.println("Please Choose one of the valid Choices");
-            choice = input.nextInt();
-            input.nextLine();
-        }
+    protected static int choiceInput() {
+        int choice = cin.nextInt();
+        cin.nextLine();
         return choice;
     }
+
+    protected static void addStudent() {
+        System.out.println("\t\t-----------ADD STUDENT-----------");
+        System.out.println("Please Enter Student ID: ");
+        int sID;
+        sID = cin.nextInt();
+        cin.nextLine();
+        System.out.println("Please Enter Student Name: ");
+        String sName = cin.nextLine();
+        System.out.println("Please Enter Student Address: ");
+        String sAddress = cin.nextLine();
+        System.out.println("Please Enter Student GPA: ");
+        Double sGPA = cin.nextDouble();
+        cin.nextLine();
+        treeTable.insert(new Student(sID, sName, sAddress, sGPA));
+        System.out.println("\nStudent Inserted Succefully !");
+    }
+
+    protected static void Search() { // What is the difference between this and Display???
+        System.out.println("\t\t-----------SEARCH STUDENT-----------");
+        System.out.println("Please Enter Student ID: ");
+        int sID;
+        sID = cin.nextInt();
+        Student stud = treeTable.search(sID);
+        System.out.println(stud.toString());
+        System.out.println("\nThank you!");
+    }
+
+    protected static void Update() {
+        System.out.println("\t\t-----------UPDATE STUDENT-----------");
+        System.out.println("Please Enter Student ID: ");
+
+        // THE COMMENTED CODE WAS: A trial to verify if the ID is available as an input
+
+        // Student sFlag;
+        int sID;
+        // String flag;
+        // do {
+        sID = cin.nextInt();
+        // sFlag = treeTable.search(sID);
+        // System.out.println(" This ID Is Not Registerd, Try Again? (Y/N) ");
+        // cin.nextLine();
+        // flag = cin.nextLine().toLowerCase();
+        // } while (sFlag == null && flag == "y");
+        // if (flag == "n" && sFlag != null) {
+        treeTable.update(sID);
+        // }
+    }
+
+    // Delete()
+
+    protected static void Display() {
+        System.out.println("\t\t-----------DISPLAY STUDENT-----------");
+        System.out.println("Please Enter Student ID: ");
+        int sID;
+        sID = cin.nextInt();
+        treeTable.printStudent(sID);
+    }
+
+    protected static void DisplayStudents(int mode) {
+        switch (mode) {
+            case 1:
+                treeTable.printAll();
+                break;
+            case 2:
+                System.out.println("\t\t-----------Display STUDENTS BY YEAR-----------");
+                System.out.println("Please Enter Year: ");
+                int year = cin.nextInt();
+                treeTable.printTree(year);
+                break;
+            default:
+                break;
+        }
+    }
+
+    protected static void showTreeByYear() {
+        System.out.println("\t\t-----------DISPLAY TREE BY YEAR-----------");
+        System.out.println("Please Enter Year: ");
+        int year = cin.nextInt();
+        treeTable.showTree(year);
+    }
+
+    protected static void studentsUnderGPA() {
+        System.out.println("\t\t-----------DISPLAY STUDENT UNDER GPA X-----------");
+        System.out.println("Please Enter GPA: ");
+        int sGPA = cin.nextInt();
+        treeTable.studentGPA(sGPA);
+    }
+
+    // saveFile()
+
+    // loadFile()
 }
