@@ -1,0 +1,188 @@
+{
+  "hashArray": [
+    {},
+    {
+      "root": {
+        "iData": 2001500,
+        "dData": {
+          "id": 2001500,
+          "name": "Ali",
+          "address": "behind You",
+          "gpa": 2.8
+        },
+        "leftChild": {
+          "iData": 2001432,
+          "dData": {
+            "id": 2001432,
+            "name": "Hamad",
+            "address": "behind You",
+            "gpa": 2.7
+          },
+          "leftChild": {
+            "iData": 2001354,
+            "dData": {
+              "id": 2001354,
+              "name": "Saud",
+              "address": "behind You",
+              "gpa": 1.5
+            },
+            "leftChild": {
+              "iData": 2001234,
+              "dData": {
+                "id": 2001234,
+                "name": "Saad",
+                "address": "behind You",
+                "gpa": 2.9
+              },
+              "rightChild": {
+                "iData": 2001348,
+                "dData": {
+                  "id": 2001348,
+                  "name": "Omar",
+                  "address": "behind You",
+                  "gpa": 1.4
+                }
+              }
+            }
+          }
+        },
+        "rightChild": {
+          "iData": 2001657,
+          "dData": {
+            "id": 2001657,
+            "name": "Jabbar",
+            "address": "behind You",
+            "gpa": 3.2
+          },
+          "leftChild": {
+            "iData": 2001567,
+            "dData": {
+              "id": 2001567,
+              "name": "Abood",
+              "address": "behind You",
+              "gpa": 1.9
+            }
+          },
+          "rightChild": {
+            "iData": 2001789,
+            "dData": {
+              "id": 2001789,
+              "name": "Khalifa",
+              "address": "behind You",
+              "gpa": 3.7
+            },
+            "leftChild": {
+              "iData": 2001675,
+              "dData": {
+                "id": 2001675,
+                "name": "Amr",
+                "address": "behind You",
+                "gpa": 3.5
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "root": {
+        "iData": 2002500,
+        "dData": {
+          "id": 2002500,
+          "name": "Ali",
+          "address": "behind You",
+          "gpa": 2.8
+        },
+        "leftChild": {
+          "iData": 2002432,
+          "dData": {
+            "id": 2002432,
+            "name": "Hamad",
+            "address": "behind You",
+            "gpa": 2.7
+          },
+          "leftChild": {
+            "iData": 2002354,
+            "dData": {
+              "id": 2002354,
+              "name": "Saud",
+              "address": "behind You",
+              "gpa": 1.5
+            },
+            "leftChild": {
+              "iData": 2002234,
+              "dData": {
+                "id": 2002234,
+                "name": "Saad",
+                "address": "behind You",
+                "gpa": 2.9
+              },
+              "rightChild": {
+                "iData": 2002348,
+                "dData": {
+                  "id": 2002348,
+                  "name": "Omar",
+                  "address": "behind You",
+                  "gpa": 1.4
+                }
+              }
+            }
+          }
+        },
+        "rightChild": {
+          "iData": 2002657,
+          "dData": {
+            "id": 2002657,
+            "name": "Jabbar",
+            "address": "behind You",
+            "gpa": 3.2
+          },
+          "leftChild": {
+            "iData": 2002567,
+            "dData": {
+              "id": 2002567,
+              "name": "Abood",
+              "address": "behind You",
+              "gpa": 1.9
+            }
+          },
+          "rightChild": {
+            "iData": 2002789,
+            "dData": {
+              "id": 2002789,
+              "name": "Khalifa",
+              "address": "behind You",
+              "gpa": 3.7
+            },
+            "leftChild": {
+              "iData": 2002675,
+              "dData": {
+                "id": 2002675,
+                "name": "Amr",
+                "address": "behind You",
+                "gpa": 3.5
+              }
+            }
+          }
+        }
+      }
+    },
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+  ]
+}
