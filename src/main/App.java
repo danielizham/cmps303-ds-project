@@ -25,6 +25,8 @@ public class App {
 		Menu.treeTable.insert(new Student(2002348, "Omar", "behind You", 1.4));
 		Menu.treeTable.insert(new Student(2002567, "Abood", "behind You", 1.9));
 
-		Menu.showMenu();
+		Menu.saveToFile();
+
+//		Menu.showMenu();
 	}
 }

@@ -1,6 +1,11 @@
 package main;
 
+import java.io.FileWriter;
+import java.io.Writer;
 import java.util.Scanner;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import datastructure.TreeTable;
 import model.Student;
 
@@ -174,6 +179,17 @@ public class Menu {
     }
 
     // saveFile()
+
+    public static void saveToFile() {
+        try {
+            Writer writer = new FileWriter("data/Students.json");
+            GsonBuilder gson = new GsonBuilder().setPrettyPrinting();
+            gson.create().toJson(treeTable, writer);
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     // loadFile()
 }

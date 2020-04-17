@@ -1,12 +1,14 @@
 package datastructure;
 
+import com.google.gson.Gson;
 import model.Student;
 
+import java.io.FileWriter;
+import java.io.Writer;
 import java.util.Scanner;
 
 public class TreeTable {
 
-	Scanner scanner = new Scanner(System.in);
 
 	private Tree[] hashArray;
 
@@ -31,6 +33,7 @@ public class TreeTable {
 	public void update(int id) {
 		Student student = search(id);
 		if (student != null) {
+			Scanner scanner = new Scanner(System.in);
 			System.out.println("Current Student Information");
 			System.out.println(student);
 
@@ -43,6 +46,7 @@ public class TreeTable {
 			// Puts a New Student, Doesnt Update
 			hashArray[h(id)].find(id).dData = new Student(id, name, address, gpa);
 			System.out.println("Student Updated Succefully !");
+			scanner.close();
 		} else {
 			System.out.println("Student with such id does not exist!");
 		}
