@@ -17,7 +17,7 @@ public class Menu {
     // Let This Be Here For Now Since We Should Move All Of the Data into The Data Manager.
     // Also It Made It easier to access the table in the functions for now.
     // Wil Be Changed soon
-    static Scanner cin = new Scanner(System.in); // Generally Scoped Scanner To Avoid Repetition
+    public static Scanner scanner = new Scanner(System.in); // Generally Scoped Scanner To Avoid Repetition
 
     public static void showMenu() {
 
@@ -77,6 +77,7 @@ public class Menu {
                     break;
                 case 12:
                     System.out.println("\nThank you for using this application.");
+                    scanner.close();
                     break;
                 default:
                     System.out.println("Invalid Input");
@@ -86,8 +87,8 @@ public class Menu {
     }
 
     protected static int choiceInput() {
-        int choice = cin.nextInt();
-        cin.nextLine();
+        int choice = scanner.nextInt();
+        scanner.nextLine();
         return choice;
     }
 
@@ -95,15 +96,15 @@ public class Menu {
         System.out.println("\t\t-----------ADD STUDENT-----------");
         System.out.println("Please Enter Student ID: ");
         int sID;
-        sID = cin.nextInt();
-        cin.nextLine();
+        sID = scanner.nextInt();
+        scanner.nextLine();
         System.out.println("Please Enter Student Name: ");
-        String sName = cin.nextLine();
+        String sName = scanner.nextLine();
         System.out.println("Please Enter Student Address: ");
-        String sAddress = cin.nextLine();
+        String sAddress = scanner.nextLine();
         System.out.println("Please Enter Student GPA: ");
-        double sGPA = cin.nextDouble();
-        cin.nextLine();
+        double sGPA = scanner.nextDouble();
+        scanner.nextLine();
         treeTable.insert(new Student(sID, sName, sAddress, sGPA));
         System.out.println("\nStudent Inserted Successfully !");
     }
@@ -112,7 +113,7 @@ public class Menu {
         System.out.println("\t\t-----------SEARCH STUDENT-----------");
         System.out.println("Please Enter Student ID: ");
         int sID;
-        sID = cin.nextInt();
+        sID = scanner.nextInt();
         Student stud = treeTable.search(sID);
         System.out.println(stud.toString());
         System.out.println("\nThank you!");
@@ -128,7 +129,7 @@ public class Menu {
         int sID;
         // String flag;
         // do {
-        sID = cin.nextInt();
+        sID = scanner.nextInt();
         // sFlag = treeTable.search(sID);
         // System.out.println(" This ID Is Not Registerd, Try Again? (Y/N) ");
         // cin.nextLine();
@@ -145,7 +146,7 @@ public class Menu {
         System.out.println("\t\t-----------DISPLAY STUDENT-----------");
         System.out.println("Please Enter Student ID: ");
         int sID;
-        sID = cin.nextInt();
+        sID = scanner.nextInt();
         treeTable.printStudent(sID);
     }
 
@@ -157,7 +158,7 @@ public class Menu {
             case 2:
                 System.out.println("\t\t-----------Display STUDENTS BY YEAR-----------");
                 System.out.println("Please Enter Year: ");
-                int year = cin.nextInt();
+                int year = scanner.nextInt();
                 treeTable.printTree(year);
                 break;
             default:
@@ -168,14 +169,14 @@ public class Menu {
     protected static void showTreeByYear() {
         System.out.println("\t\t-----------DISPLAY TREE BY YEAR-----------");
         System.out.println("Please Enter Year: ");
-        int year = cin.nextInt();
+        int year = scanner.nextInt();
         treeTable.showTree(year);
     }
 
     protected static void studentsUnderGPA() {
         System.out.println("\t\t-----------DISPLAY STUDENT UNDER GPA X-----------");
         System.out.println("Please Enter GPA: ");
-        int sGPA = cin.nextInt();
+        int sGPA = scanner.nextInt();
         treeTable.studentGPA(sGPA);
     }
 

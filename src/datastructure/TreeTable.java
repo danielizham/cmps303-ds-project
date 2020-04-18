@@ -1,9 +1,8 @@
 package datastructure;
 
 
+import main.Menu;
 import model.Student;
-
-import java.util.Scanner;
 
 public class TreeTable {
 	private Tree[] hashArray;
@@ -25,23 +24,21 @@ public class TreeTable {
 	public void update(int id) {
 		Student student = search(id);
 		if (student != null) {
-			Scanner scanner = new Scanner(System.in);
 			System.out.println("Current Student Information");
 			System.out.println(student);
 
 			System.out.println("Enter new Name:");
-			String name = scanner.nextLine();
+			String name = Menu.scanner.nextLine();
 			System.out.println("Enter new Address:");
-			String address = scanner.nextLine();
+			String address = Menu.scanner.nextLine();
 			System.out.println("Enter new GPA:");
-			double gpa = scanner.nextDouble();
+			double gpa = Menu.scanner.nextDouble();
 			// Puts a New Student, Doesn't Update
 //			hashArray[h(id)].find(id).dData = new Student(id, name, address, gpa);
 			student.setAddress(address);
 			student.setGpa(gpa);
 			student.setName(name);
 			System.out.println("Student Updated Successfully !");
-//			scanner.close();
 		} else {
 			System.out.println("Student with such id does not exist!");
 		}
