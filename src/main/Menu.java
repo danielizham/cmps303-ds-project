@@ -183,8 +183,8 @@ public class Menu {
     public static void saveToFile() {
         try {
             Writer writer = new FileWriter("data/Students.json");
-            GsonBuilder gson = new GsonBuilder().setPrettyPrinting();
-            gson.create().toJson(treeTable, writer);
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            gson.toJson(treeTable, writer);
             writer.close();
             System.out.println("==============DATA SAVED SUCCESSFULLY==============");
         } catch (Exception e) {
