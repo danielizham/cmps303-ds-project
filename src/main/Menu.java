@@ -16,7 +16,7 @@ public class Menu {
     static TreeTable treeTable = new TreeTable();
     // Let This Be Here For Now Since We Should Move All Of the Data into The Data Manager.
     // Also It Made It easier to access the table in the functions for now.
-    // Wil Be Changed soon
+    // Will Be Changed soon
     public static Scanner scanner = new Scanner(System.in); // Generally Scoped Scanner To Avoid Repetition
 
     public static void showMenu() {
@@ -96,15 +96,28 @@ public class Menu {
         System.out.println("\t\t-----------ADD STUDENT-----------");
         System.out.println("Please Enter Student ID: ");
         int sID;
-        sID = scanner.nextInt();
-        scanner.nextLine();
+        String sID_string = scanner.nextLine();
+        while (!sID_string.matches("20[\\d]{3,}")) {
+        	System.out.println("ERROR: The format of a "
+        			+ "student ID must be 20YYXXXXX");
+        	System.out.println("Please Enter Student ID: ");
+        	sID_string = scanner.nextLine();
+        }
+        sID = Integer.parseInt(sID_string);
         System.out.println("Please Enter Student Name: ");
         String sName = scanner.nextLine();
         System.out.println("Please Enter Student Address: ");
         String sAddress = scanner.nextLine();
         System.out.println("Please Enter Student GPA: ");
-        double sGPA = scanner.nextDouble();
-        scanner.nextLine();
+        Double sGPA;
+        String sGPA_string = scanner.nextLine(); 
+        while (!sGPA_string.matches("[0-3]{1}(.[\\d])?|4(.0)?")) {
+        	System.out.println("ERROR: The format of a "
+        			+ "student GPA must be e.g. 3.6");
+        	System.out.println("Please Enter Student GPA: ");
+        	sGPA_string = scanner.nextLine();
+        }
+        sGPA = Double.parseDouble(sGPA_string);
         treeTable.insert(new Student(sID, sName, sAddress, sGPA));
         System.out.println("\nStudent Inserted Successfully !");
     }
@@ -113,7 +126,15 @@ public class Menu {
         System.out.println("\t\t-----------SEARCH STUDENT-----------");
         System.out.println("Please Enter Student ID: ");
         int sID;
-        sID = scanner.nextInt();
+        String sID_string = scanner.nextLine();
+        while (!sID_string.matches("20[\\d]{3,}")) {
+        	System.out.println("ERROR: The format of a "
+        			+ "student ID must be 20YYXXXXX");
+        	System.out.println("Please Enter Student ID: ");
+        	sID_string = scanner.nextLine();
+        }
+        sID = Integer.parseInt(sID_string);
+//        sID = cin.nextInt();
         Student stud = treeTable.search(sID);
         System.out.println(stud.toString());
         System.out.println("\nThank you!");
@@ -127,11 +148,19 @@ public class Menu {
 
         // Student sFlag;
         int sID;
+        String sID_string = scanner.nextLine();
+        while (!sID_string.matches("20[\\d]{3,}")) {
+        	System.out.println("ERROR: The format of a "
+        			+ "student ID must be 20YYXXXXX");
+        	System.out.println("Please Enter Student ID: ");
+        	sID_string = scanner.nextLine();
+        }
+        sID = Integer.parseInt(sID_string);
         // String flag;
         // do {
-        sID = scanner.nextInt();
+        // sID = scanner.nextInt();
         // sFlag = treeTable.search(sID);
-        // System.out.println(" This ID Is Not Registerd, Try Again? (Y/N) ");
+        // System.out.println(" This ID Is Not Registered, Try Again? (Y/N) ");
         // cin.nextLine();
         // flag = cin.nextLine().toLowerCase();
         // } while (sFlag == null && flag == "y");
@@ -146,7 +175,15 @@ public class Menu {
         System.out.println("\t\t-----------DISPLAY STUDENT-----------");
         System.out.println("Please Enter Student ID: ");
         int sID;
-        sID = scanner.nextInt();
+        String sID_string = scanner.nextLine();
+        while (!sID_string.matches("20[\\d]{3,}")) {
+        	System.out.println("ERROR: The format of a "
+        			+ "student ID must be 20YYXXXXX");
+        	System.out.println("Please Enter Student ID: ");
+        	sID_string = scanner.nextLine();
+        }
+        sID = Integer.parseInt(sID_string);
+//        sID = scanner.nextInt();
         treeTable.printStudent(sID);
     }
 
@@ -158,7 +195,15 @@ public class Menu {
             case 2:
                 System.out.println("\t\t-----------Display STUDENTS BY YEAR-----------");
                 System.out.println("Please Enter Year: ");
-                int year = scanner.nextInt();
+                int year;
+                String year_string = scanner.nextLine();
+                while (!year_string.matches("20[\\d]{2}")) {
+                	System.out.println("ERROR: The format of a "
+                			+ "year must be 20YY");
+                	System.out.println("Please Enter Year: ");
+                	year_string = scanner.nextLine();
+                }
+                year = Integer.parseInt(year_string);
                 treeTable.printTree(year);
                 break;
             default:
@@ -169,14 +214,30 @@ public class Menu {
     protected static void showTreeByYear() {
         System.out.println("\t\t-----------DISPLAY TREE BY YEAR-----------");
         System.out.println("Please Enter Year: ");
-        int year = scanner.nextInt();
+        int year;
+        String year_string = scanner.nextLine();
+        while (!year_string.matches("20[\\d]{2}")) {
+        	System.out.println("ERROR: The format of a "
+        			+ "year must be 20YY");
+        	System.out.println("Please Enter Year: ");
+        	year_string = scanner.nextLine();
+        }
+        year = Integer.parseInt(year_string);
         treeTable.showTree(year);
     }
 
     protected static void studentsUnderGPA() {
         System.out.println("\t\t-----------DISPLAY STUDENT UNDER GPA X-----------");
         System.out.println("Please Enter GPA: ");
-        int sGPA = scanner.nextInt();
+        double sGPA;
+        String sGPA_string = scanner.nextLine(); 
+        while (!sGPA_string.matches("[0-3]{1}(.[\\d])?|4(.0)?")) {
+        	System.out.println("ERROR: The format of a "
+        			+ "student GPA must be e.g. 3.6");
+        	System.out.println("Please Enter Student GPA: ");
+        	sGPA_string = scanner.nextLine();
+        }
+        sGPA = Double.parseDouble(sGPA_string);
         treeTable.studentGPA(sGPA);
     }
 
