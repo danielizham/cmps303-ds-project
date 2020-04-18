@@ -1,11 +1,14 @@
 package main;
 
 import java.io.FileWriter;
+import java.io.Reader;
 import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Scanner;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import datastructure.TreeTable;
 import model.Student;
 
@@ -14,7 +17,7 @@ public class Menu {
     // Let This Be Here For Now Since We Should Move All Of the Data into The Data Manager.
     // Also It Made It easier to access the table in the functions for now.
     // Wil Be Changed soon
-    static Scanner cin = new Scanner(System.in); // Generally Scoped Scanner To Avoid Repetetion
+    static Scanner cin = new Scanner(System.in); // Generally Scoped Scanner To Avoid Repetition
 
     public static void showMenu() {
 
@@ -67,12 +70,10 @@ public class Menu {
                     studentsUnderGPA();
                     break;
                 case 10:
-                    // saveFile();
-                    System.out.println("Not implemented Yet!");
+                    saveToFile();
                     break;
                 case 11:
-                    // readFile();
-                    System.out.println("Not implemented Yet!");
+                    loadFromFile();
                     break;
                 case 12:
                     System.out.println("\nThank you for using this application.");
@@ -101,10 +102,10 @@ public class Menu {
         System.out.println("Please Enter Student Address: ");
         String sAddress = cin.nextLine();
         System.out.println("Please Enter Student GPA: ");
-        Double sGPA = cin.nextDouble();
+        double sGPA = cin.nextDouble();
         cin.nextLine();
         treeTable.insert(new Student(sID, sName, sAddress, sGPA));
-        System.out.println("\nStudent Inserted Succefully !");
+        System.out.println("\nStudent Inserted Successfully !");
     }
 
     protected static void Search() { // What is the difference between this and Display???
@@ -178,18 +179,30 @@ public class Menu {
         treeTable.studentGPA(sGPA);
     }
 
-    // saveFile()
-
     public static void saveToFile() {
         try {
             Writer writer = new FileWriter("data/Students.json");
             GsonBuilder gson = new GsonBuilder().setPrettyPrinting();
             gson.create().toJson(treeTable, writer);
             writer.close();
+            System.out.println("==============DATA SAVED SUCCESSFULLY==============");
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("=============!!OOPS SOMETHING HAPPENED!!==============");
         }
     }
 
-    // loadFile()
+    public static void loadFromFile() {
+        try {
+            Gson gson = new Gson();
+            Reader reader = Files.newBufferedReader(Paths.get("data/Students.json"));
+            treeTable = new Gson().fromJson(reader, new TypeToken<TreeTable>() {
+            }.getType());
+            reader.close();
+            System.out.println("==============DATA LOADED SUCCESSFULLY==============");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("=============!!OOPS SOMETHING HAPPENED!!==============");
+        }
+    }
 }
