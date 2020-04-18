@@ -45,23 +45,23 @@ public class Menu {
                     addStudent();
                     break;
                 case 2:
-                    Search();
+                    search();
                     break;
                 case 3:
-                    Update(); // Creates a New Student Using the Updated info
+                    update(); // Creates a New Student Using the Updated info
                     break;
                 case 4:
                     // deleteStudent(id);
                     System.out.println("Not implemented Yet!");
                     break;
                 case 5:
-                    Display();
+                    display();
                     break;
                 case 6:
-                    DisplayStudents(2);
+                    displayStudents(2);
                     break;
                 case 7:
-                    DisplayStudents(1);
+                    displayStudents(1);
                     break;
                 case 8:
                     showTreeByYear();
@@ -122,7 +122,7 @@ public class Menu {
         System.out.println("\nStudent Inserted Successfully !");
     }
 
-    protected static void Search() { // What is the difference between this and Display???
+    protected static void search() { // What is the difference between this and Display???
         System.out.println("\t\t-----------SEARCH STUDENT-----------");
         System.out.println("Please Enter Student ID: ");
         int sID;
@@ -140,7 +140,7 @@ public class Menu {
         System.out.println("\nThank you!");
     }
 
-    protected static void Update() {
+    protected static void update() {
         System.out.println("\t\t-----------UPDATE STUDENT-----------");
         System.out.println("Please Enter Student ID: ");
 
@@ -171,7 +171,7 @@ public class Menu {
 
     // Delete()
 
-    protected static void Display() {
+    protected static void display() {
         System.out.println("\t\t-----------DISPLAY STUDENT-----------");
         System.out.println("Please Enter Student ID: ");
         int sID;
@@ -187,7 +187,7 @@ public class Menu {
         treeTable.printStudent(sID);
     }
 
-    protected static void DisplayStudents(int mode) {
+    protected static void displayStudents(int mode) {
         switch (mode) {
             case 1:
                 treeTable.printAll();
