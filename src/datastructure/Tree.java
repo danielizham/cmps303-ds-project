@@ -69,7 +69,100 @@ public class Tree {
 		}
 		System.out.println();
 	}
+	//-------------------------------------------------------------
+	public boolean delete(int key)
+	{
+		Node current = root;
+		Node parent = root;
+		boolean isLeftChild = true;
+		
+		//To find the Node that should be deleted
+		while(current.iData != key)
+		{
+			parent = current;
+			if(key < current.iData)
+			{
+				isLeftChild = true;
+				current = current.leftChild;
+			}
+			else
+			{
+				isLeftChild = false;
+				current = current.rightChild;
+			}
+			if(current == null)
+				return false;
+		} //end while
+		
+		//Now the deletion process starts
+		//Case 1 if it's a leaf
+		if(current.leftChild == null && current.rightChild == null)
+		{
+			if(current == root)
+				root = null;
+			else if(isLeftChild)
+				parent.leftChild = null;
+			else
+				parent.rightChild = null;
+		}
+		
+		//Case 2 if it has one child only
+		else if(current.rightChild == null)
+		{
+			if(current == root)
+				root = current.leftChild;
+			else if(isLeftChild)
+				parent.leftChild = current.leftChild;
+			else
+				parent.rightChild = current.leftChild;
+		}
+		else if(current.leftChild == null)
+		{
+			if(current == root)
+				root = current.rightChild;
+			else if(isLeftChild)
+				parent.leftChild = current.rightChild;
+			else
+				parent.rightChild = current.rightChild;
 
+		}
+		
+		//Case 3 if the node has 2 children
+		else
+		{
+			Node successor = getSuccessor(current);
+			
+			if(current == root)
+				root = successor;
+			else if(isLeftChild)
+				parent.leftChild = successor;
+			else
+				parent.rightChild = successor;
+			
+			successor.leftChild = current.leftChild;
+		}
+		
+		return true;		
+	}  //End of remove()
+	
+	private Node getSuccessor(Node delNode)
+	{
+		Node successor = delNode, successorParent = delNode, current = delNode.rightChild;		
+		while(current != null)
+		{
+			successorParent = successor;
+			successor = current;
+			current = current.leftChild;
+		}
+		
+		if(successor != delNode.rightChild)
+		{
+			successorParent.leftChild = successor.rightChild;
+			successor.rightChild = delNode.rightChild;
+		}
+		
+		return successor;
+	}
 	// -------------------------------------------------------------
 	private void preOrder(Node localRoot) {
 		if (localRoot != null) {
