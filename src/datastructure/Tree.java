@@ -12,6 +12,8 @@ public class Tree {
 	}
 
 	public Node find(int key) {
+		if (root == null)
+			return null;
 		Node current = root;
 		while (current.iData != key) {
 			if (key < current.iData)

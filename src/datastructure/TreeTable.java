@@ -18,7 +18,10 @@ public class TreeTable {
 	}
 
 	public Student search(int id) {
-		return hashArray[h(id)].find(id).dData;
+		Node student = hashArray[h(id)].find(id);
+		if (student == null)
+			return null;
+		return student.dData;
 	}
 
 	public void update(int id) {
