@@ -95,46 +95,51 @@ public class Menu {
     protected static void addStudent() {
         System.out.println("\t\t-----------ADD STUDENT-----------");
         System.out.println("Please Enter Student ID: ");
-        int sID;
-        String sID_string = scanner.nextLine();
-        while (!sID_string.matches("20[\\d]{3,}")) {
-        	System.out.println("ERROR: The format of a "
-        			+ "student ID must be 20YYXXXXX");
-        	System.out.println("Please Enter Student ID: ");
-        	sID_string = scanner.nextLine();
-        }
-        sID = Integer.parseInt(sID_string);
+        int sID = validateID(scanner.nextLine());
         System.out.println("Please Enter Student Name: ");
         String sName = scanner.nextLine();
         System.out.println("Please Enter Student Address: ");
         String sAddress = scanner.nextLine();
         System.out.println("Please Enter Student GPA: ");
-        Double sGPA;
-        String sGPA_string = scanner.nextLine(); 
-        while (!sGPA_string.matches("[0-3]{1}(.[\\d])?|4(.0)?")) {
-        	System.out.println("ERROR: The format of a "
-        			+ "student GPA must be e.g. 3.6");
-        	System.out.println("Please Enter Student GPA: ");
-        	sGPA_string = scanner.nextLine();
-        }
-        sGPA = Double.parseDouble(sGPA_string);
+        double sGPA = validateGPA(scanner.nextLine());
         treeTable.insert(new Student(sID, sName, sAddress, sGPA));
         System.out.println("\nStudent Inserted Successfully !");
     }
 
-    protected static void search() { // What is the difference between this and Display???
-        System.out.println("\t\t-----------SEARCH STUDENT-----------");
-        System.out.println("Please Enter Student ID: ");
-        int sID;
-        String sID_string = scanner.nextLine();
-        while (!sID_string.matches("20[\\d]{3,}")) {
+	private static double validateGPA(String input) {
+        while (!input.matches("[0-3]{1}(.[\\d])?|4(.0)?")) {
+        	System.out.println("ERROR: The format of a "
+        			+ "student GPA must be e.g. 3.6");
+        	System.out.println("Please Enter Student GPA: ");
+        	input = scanner.nextLine();
+        }
+		return Double.parseDouble(input);
+	}
+
+	private static int validateID(String input) {
+        while (!input.matches("20[\\d]{3,}")) {
         	System.out.println("ERROR: The format of a "
         			+ "student ID must be 20YYXXXXX");
         	System.out.println("Please Enter Student ID: ");
-        	sID_string = scanner.nextLine();
+        	input = scanner.nextLine();
         }
-        sID = Integer.parseInt(sID_string);
-//        sID = cin.nextInt();
+		return Integer.parseInt(input);
+	}
+	
+	private static int validateYear(String input) {
+		while (!input.matches("20[\\d]{2}")) {
+			System.out.println("ERROR: The format of a "
+					+ "year must be 20YY");
+			System.out.println("Please Enter Year: ");
+			input = scanner.nextLine();
+		}
+		return Integer.parseInt(input);
+	}
+
+    protected static void search() { // What is the difference between this and Display???
+        System.out.println("\t\t-----------SEARCH STUDENT-----------");
+        System.out.println("Please Enter Student ID: ");
+        int sID = validateID(scanner.nextLine());
         Student stud = treeTable.search(sID);
         System.out.println(stud.toString());
         System.out.println("\nThank you!");
@@ -147,15 +152,7 @@ public class Menu {
         // THE COMMENTED CODE WAS: A trial to verify if the ID is available as an input
 
         // Student sFlag;
-        int sID;
-        String sID_string = scanner.nextLine();
-        while (!sID_string.matches("20[\\d]{3,}")) {
-        	System.out.println("ERROR: The format of a "
-        			+ "student ID must be 20YYXXXXX");
-        	System.out.println("Please Enter Student ID: ");
-        	sID_string = scanner.nextLine();
-        }
-        sID = Integer.parseInt(sID_string);
+        int sID = validateID(scanner.nextLine());
         // String flag;
         // do {
         // sID = scanner.nextInt();
@@ -174,16 +171,7 @@ public class Menu {
     protected static void display() {
         System.out.println("\t\t-----------DISPLAY STUDENT-----------");
         System.out.println("Please Enter Student ID: ");
-        int sID;
-        String sID_string = scanner.nextLine();
-        while (!sID_string.matches("20[\\d]{3,}")) {
-        	System.out.println("ERROR: The format of a "
-        			+ "student ID must be 20YYXXXXX");
-        	System.out.println("Please Enter Student ID: ");
-        	sID_string = scanner.nextLine();
-        }
-        sID = Integer.parseInt(sID_string);
-//        sID = scanner.nextInt();
+        int sID = validateID(scanner.nextLine());
         treeTable.printStudent(sID);
     }
 
@@ -195,15 +183,7 @@ public class Menu {
             case 2:
                 System.out.println("\t\t-----------Display STUDENTS BY YEAR-----------");
                 System.out.println("Please Enter Year: ");
-                int year;
-                String year_string = scanner.nextLine();
-                while (!year_string.matches("20[\\d]{2}")) {
-                	System.out.println("ERROR: The format of a "
-                			+ "year must be 20YY");
-                	System.out.println("Please Enter Year: ");
-                	year_string = scanner.nextLine();
-                }
-                year = Integer.parseInt(year_string);
+                int year = validateYear(scanner.nextLine());
                 treeTable.printTree(year);
                 break;
             default:
@@ -214,30 +194,14 @@ public class Menu {
     protected static void showTreeByYear() {
         System.out.println("\t\t-----------DISPLAY TREE BY YEAR-----------");
         System.out.println("Please Enter Year: ");
-        int year;
-        String year_string = scanner.nextLine();
-        while (!year_string.matches("20[\\d]{2}")) {
-        	System.out.println("ERROR: The format of a "
-        			+ "year must be 20YY");
-        	System.out.println("Please Enter Year: ");
-        	year_string = scanner.nextLine();
-        }
-        year = Integer.parseInt(year_string);
+        int year = validateYear(scanner.nextLine());
         treeTable.showTree(year);
     }
 
     protected static void studentsUnderGPA() {
         System.out.println("\t\t-----------DISPLAY STUDENT UNDER GPA X-----------");
         System.out.println("Please Enter GPA: ");
-        double sGPA;
-        String sGPA_string = scanner.nextLine(); 
-        while (!sGPA_string.matches("[0-3]{1}(.[\\d])?|4(.0)?")) {
-        	System.out.println("ERROR: The format of a "
-        			+ "student GPA must be e.g. 3.6");
-        	System.out.println("Please Enter Student GPA: ");
-        	sGPA_string = scanner.nextLine();
-        }
-        sGPA = Double.parseDouble(sGPA_string);
+        double sGPA = validateGPA(scanner.nextLine());
         treeTable.studentGPA(sGPA);
     }
 
