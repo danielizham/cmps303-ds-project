@@ -44,8 +44,15 @@ public class TreeTable {
 		}
 	}
 
-	public Student delete(int id) {
-		return null;
+	public Student delete(int id) {  // dose not work if the id is not in the hashArray
+		int hashVal = h(id);   // hash the key
+		if (hashArray[h(id)].find(id)!=null) { 
+			Student s = hashArray[h(id)].find(id).dData; // find student to return 
+			hashArray[h(id)].delete(id); // delete the node
+			return s; // return student
+		}
+		else
+		return null; 
 	}
 
 	public void printStudent(int id) {
