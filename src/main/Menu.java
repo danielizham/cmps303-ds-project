@@ -120,21 +120,18 @@ public class Menu {
 		System.out.println("\t\t-----------UPDATE STUDENT-----------");
 		System.out.println("Please Enter Student ID: ");
 
-		// THE COMMENTED CODE WAS: A trial to verify if the ID is available as an input
-
-		// Student sFlag;
 		int sID = validateIDExist(scanner.nextLine());
-		// String flag;
-		// do {
-		// sID = scanner.nextInt();
-		// sFlag = treeTable.search(sID);
-		// System.out.println(" This ID Is Not Registered, Try Again? (Y/N) ");
-		// cin.nextLine();
-		// flag = cin.nextLine().toLowerCase();
-		// } while (sFlag == null && flag == "y");
-		// if (flag == "n" && sFlag != null) {
-		treeTable.update(sID);
-		// }
+		System.out.println("Current Student Information");
+		System.out.println(treeTable.search(sID));
+
+		System.out.println("Enter new Name:");
+		String name = scanner.nextLine();
+		System.out.println("Enter new Address:");
+		String address = scanner.nextLine();
+		System.out.println("Enter new GPA:");
+		double gpa = scanner.nextDouble();
+		treeTable.update(sID, name, address, gpa);
+		System.out.println("Student Updated Successfully !");
 	}
 
 	// Delete()

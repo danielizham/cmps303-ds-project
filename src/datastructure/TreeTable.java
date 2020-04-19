@@ -1,6 +1,5 @@
 package datastructure;
 
-
 import main.Menu;
 import model.Student;
 
@@ -24,38 +23,21 @@ public class TreeTable {
 		return student.dData;
 	}
 
-	public void update(int id) {
+	public void update(int id, String name, String address, double gpa) {
 		Student student = search(id);
-		if (student != null) {
-			System.out.println("Current Student Information");
-			System.out.println(student);
-
-			System.out.println("Enter new Name:");
-			String name = Menu.scanner.nextLine();
-			System.out.println("Enter new Address:");
-			String address = Menu.scanner.nextLine();
-			System.out.println("Enter new GPA:");
-			double gpa = Menu.scanner.nextDouble();
-			// Puts a New Student, Doesn't Update
-//			hashArray[h(id)].find(id).dData = new Student(id, name, address, gpa);
-			student.setAddress(address);
-			student.setGpa(gpa);
-			student.setName(name);
-			System.out.println("Student Updated Successfully !");
-		} else {
-			System.out.println("Student with such id does not exist!");
-		}
+		student.setAddress(address);
+		student.setGpa(gpa);
+		student.setName(name);
 	}
 
-	public Student delete(int id) {  // dose not work if the id is not in the hashArray
-		int hashVal = h(id);   // hash the key
-		if (hashArray[h(id)].find(id)!=null) { 
-			Student s = hashArray[h(id)].find(id).dData; // find student to return 
+	public Student delete(int id) { // dose not work if the id is not in the hashArray
+		int hashVal = h(id); // hash the key
+		if (hashArray[h(id)].find(id) != null) {
+			Student s = hashArray[h(id)].find(id).dData; // find student to return
 			hashArray[h(id)].delete(id); // delete the node
 			return s; // return student
-		}
-		else
-		return null; 
+		} else
+			return null;
 	}
 
 	public void printStudent(int id) {
