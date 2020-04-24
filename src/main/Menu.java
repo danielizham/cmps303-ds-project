@@ -6,6 +6,8 @@ import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -52,8 +54,11 @@ public class Menu {
 				update(); // Creates a New Student Using the Updated info
 				break;
 			case 4:
-				// deleteStudent(id);
-				System.out.println("Not implemented Yet!");
+				try {
+					deleteStudent();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 				break;
 			case 5:
 				display();
@@ -85,6 +90,31 @@ public class Menu {
 			}
 
 		} while (choice != 12);
+	}
+
+	protected static void deleteStudent() throws InterruptedException {
+		System.out.println("\t\t-----------DELETE STUDENT-----------");
+		System.out.println("Please Enter Student ID: ");
+		int sID = validateIDExist(scanner.nextLine());
+		System.out.print("Are you sure you want to delete ");
+		System.out.println(treeTable.search(sID) + ("? (y/n): "));
+		String answer = scanner.nextLine();
+		while (!answer.matches("y|n|Y|N")) {
+			System.out.print("ERROR: Invalid answer. Enter 'y' or 'n': ");
+			answer = scanner.nextLine();
+		}
+		if (answer.matches("n|N")) {
+			System.out.print("Cancelling deletion.");
+			TimeUnit.SECONDS.sleep(1);
+			System.out.print(".");
+			TimeUnit.SECONDS.sleep(1);
+			System.out.println(".");
+			return;
+		}
+		treeTable.delete(sID);
+		System.out.println();
+		System.out.println("The student with ID " + sID + " has been successfully deleted!");
+		TimeUnit.SECONDS.sleep(2);
 	}
 
 	protected static int choiceInput() {
@@ -200,7 +230,7 @@ public class Menu {
 		}
 	}
 
-	// ========VALIDATION METHODS========//
+	// ========VALIDATION METHODS======== //
 
 	private static int validateIDNotExist(String input) {
 		while (true) {
@@ -215,7 +245,7 @@ public class Menu {
 		}
 		return Integer.parseInt(input);
 	}
-	
+
 	private static int validateIDExist(String input) {
 		while (true) {
 			if (!input.matches("20[\\d]{3,}"))
