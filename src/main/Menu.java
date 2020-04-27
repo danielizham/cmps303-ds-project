@@ -256,7 +256,7 @@ public class Menu {
 	}
 
 	private static double validateGPA(String input) {
-		while (!input.matches("[0-3]{1}(.[\\d])?|4(.0)?")) {
+		while (!input.matches("[0-3]{1}(\\.[\\d])?|4(\\.0)?")) {
 			System.out.println("ERROR: The format of a " + "student GPA must be e.g. 3.6\n");
 			System.out.println("Please Enter Student GPA: ");
 			input = scanner.nextLine();
