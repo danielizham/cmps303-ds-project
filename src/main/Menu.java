@@ -16,10 +16,6 @@ import model.Student;
 
 public class Menu {
 	static TreeTable treeTable = new TreeTable();
-	// Let This Be Here For Now Since We Should Move All Of the Data into The Data
-	// Manager.
-	// Also It Made It easier to access the table in the functions for now.
-	// Will Be Changed soon
 	public static Scanner scanner = new Scanner(System.in); // Generally Scoped Scanner To Avoid Repetition
 
 	public static void showMenu() {
@@ -51,7 +47,7 @@ public class Menu {
 				search();
 				break;
 			case 3:
-				update(); // Creates a New Student Using the Updated info
+				update();
 				break;
 			case 4:
 				try {
@@ -137,7 +133,7 @@ public class Menu {
 		System.out.println("\nStudent Inserted Successfully !");
 	}
 
-	protected static void search() { // What is the difference between this and Display???
+	protected static void search() {
 		System.out.println("\t\t-----------SEARCH STUDENT-----------");
 		System.out.println("Please Enter Student ID: ");
 		int sID = validateIDExist(scanner.nextLine());
@@ -218,7 +214,6 @@ public class Menu {
 
 	public static void loadFromFile() {
 		try {
-			Gson gson = new Gson();
 			Reader reader = Files.newBufferedReader(Paths.get("data/Students.json"));
 			treeTable = new Gson().fromJson(reader, new TypeToken<TreeTable>() {
 			}.getType());
